@@ -1,0 +1,96 @@
+{
+    "env_yc_catalog_id": "tra-la-la",
+    "env_yc_service_key_file": "tra-la-la-tra-la-la-tra-la-la.tra-la-la",
+    "env_yc_service_account_id": "tra-la-la",
+    "env_yc_env_source_image_id": "tra-la-la",
+    "env_yc_instance_cores": "tra-la-la",
+    "env_yc_disk_type": "tra-la-la-tra-la-la",
+    "env_yc_disk_size_gb": "tra-la-la",
+    "env_yc_zone": "ru-tra-la-la-a",
+    "env_yc_subnet_id": "tra-la-la",
+    "env_yc_skip_create_image": "tra-la-la",
+    "env_ssh_username": "tra-la-la"
+
+}
+
+
+
+
+...
+## what (VM type and paramaters) and where (Cloud providers) we assemble)
+"builders": [
+    {
+        "type":"googlecompute",
+        "project_id": "{{ user `project_id` }}",
+        "image_name": "my-app-{{timestamp}}",
+        "source_image": "{{ user `source_image`}}",
+        "zone": "{{ user `zone`}}",
+        "ssh_username": "appuser",
+        "machine_type": "{{ user `machine_type` }}"
+    }
+],
+...
+
+## Variables
+
+"variables": {
+    "project_id":null,
+    "zone": "europe-wes1-b",
+    "machine_type": "f1-micro",
+    "source_image": "ubuntu-18-04-bionuc-v20181003"
+},
+...
+
+##Provisioners (Some commands, that we run into VM, before we pack it)
+"Provisioners": [
+    {
+        "type": "shell",
+        "inline": [
+            "sudo apt-key adv --keeserver hkp: // ......
+            .........",
+            "echo \ "deb [arch=amd64] https:// ..... | .... ",
+            "",
+            ""
+        ]
+    }
+]
+...
+##  Post-processors - action, that will be apply to artifact
+"Post-processors": [
+    // simple definition
+    "compress",
+    // Detailed definition
+    {
+        "type": "compress",
+        "format": "tar.gz"
+    },
+    //sequence definition where example.com - private registry, that will be store our artifact
+    [
+        "compress",
+        {"type": "upload", "endpoint": "http://example.com"}
+    ]
+]
+
+
+Steps:
+1) packer validate
+2) packer build
+
+Notes:
+1) When we use HCL - there are no Provisioners,builders and other "blocks" - all-in-one block...
+2) userfull variables:
+- ID
+- host, port, username, password
+- conntype
+- PackerRunUUID
+- PackerHTTPIP, PackerHTTPPort, and PackerHTTPAddr:
+- SSHPublicKey and SSHPrivateKey
+
+Use variable:
+a) use -var/--var flags
+b) define variables section within our template *see ##Variables
+---
+User variables are used by calling the {{user}} function in the form of {{user 'variable'}}.
+This function can be used in any value but type within the template: in builders, provisioners, anywhere outside the variables section.
+User variables are available globally within the rest of the template.
+---
