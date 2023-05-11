@@ -85,7 +85,27 @@ yc config list
 yc config profile list
 yc config profile get cloud-otus-sea-profile
 yc compute image list --folder-id standard-images | grep ubuntu
-#if you create ssh-key.pub, default user for them: ya-user,
+#if you create ssh-key.pub, default user for them: yc-user,
 alternative- using cloud-config
 #
 ```
+# Lesson 7. Homework 5 (using Packer to create "golden image")
+**Done everything possible**
+
+
+
+### Usefull commands:
+
+```
+yc resource-manager folder add-access-binding --id=<folderID> --role editor --service-account-id=<Service-account-id>
+
+```
+```
+packer validate -var-file=some-env-file.json some-target-file.json
+packer build -var-file=some-env-file.json some-target-file.json
+```
+
+
+
+`YC packer notes`:
+- Just one of a *source_image_id*  or *source_image_family* must be specified.
