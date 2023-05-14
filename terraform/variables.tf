@@ -1,7 +1,6 @@
 variable "ya-cloud_service-token" {
   type        = string
   description = "yandex cloud service account token"
-  sensitive   = true # always use for pass and keys
 }
 variable "cloud_id" {
   description = "Cloud"
@@ -18,20 +17,17 @@ variable "zone" {
 }
 variable "public_key_path" {
   # Описание переменной
-  sensitive   = true
   description = "Path to the public key used for ssh access"
   default     = "Enter relative path to your *.pub ssh key here or use own *.tfvars"
 
 }
 variable "image_id" {
   type        = string
-  sensitive   = true
   description = "yandex cloud 'Golden image' ID"
   default     = "Enter your 'Golden image' image-id here or use own *.tfvars"
 }
 variable "subnet_id" {
   type        = string
-  sensitive   = true
   description = "Subnet"
   default     = "Enter your cloud-subnet-id here or use own *.tfvars"
 
@@ -39,7 +35,6 @@ variable "subnet_id" {
 variable "service_account_key_file" {
   description = "key.json"
   default     = "Enter the path and name your service account key *.json or use own *.tfvars"
-  sensitive   = true
 
 }
 variable "instance_count" {
