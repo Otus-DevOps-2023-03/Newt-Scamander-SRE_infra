@@ -7,5 +7,4 @@ packer/service-key-v2 backup.json
 *.tfstate.backup
 *.tfvars
 .terraform/*
-*key*.*
 Otus-cloud-terraform/.terraform.lock.hcl

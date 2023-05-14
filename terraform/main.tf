@@ -6,46 +6,12 @@ terraform {
       source  = "yandex-cloud/yandex"
       version = ">= 0.90.0"
     }
-    # google = {
-    #   source = "hashicorp/google"
-    #   version = "4.64.0"
-    # }
-    # kubernetes = {
-    #   source = "hashicorp/kubernetes"
-    #   version = "2.20.0"
-    # }
-    # azurerm = {
-    #   source = "hashicorp/azurerm"
-    #   version = "3.56.0"
-    # }
-    #   github = {
-    #   source = "integrations/github"
-    #   version = "5.25.0"
-    # }
-    # aws = {
-    #   source = "hashicorp/aws"
-    #   version = "4.67.0"
-    # }
+
     time = {
       source  = "hashicorp/time"
       version = "0.9.1"
     }
-    # dns = {
-    #   source  = "hashicorp/dns"
-    #   version = "3.3.2"
-    # }
-    # random = {
-    #   source  = "hashicorp/random"
-    #   version = "3.5.1"
-    # }
-    # tls = {
-    #   source  = "hashicorp/tls"
-    #   version = "4.0.4"
-    # }
-    # hetznercloud = {
-    #   source = "hetznercloud/hcloud"
-    #   version = "1.38.2"
-    # }
+
 
   }
 }
@@ -109,60 +75,6 @@ resource "yandex_compute_instance" "app" {
   }
 }
 
-
-
-
-# resource "yandex_vpc_network" "terraform-deploy-net" {
-#   name = "terraform_net-cloud"
-# }
-
-# resource "yandex_vpc_subnet" "terraform_subnet" {
-#   name = "terraform_subnet-cloud"
-#   zone = var.zone
-#   network_id = yandex_vpc_network.terraform-deploy-net.id
-#   v4_cidr_blocks = [ "192.168.122.0/24" ]
-# }
-
-
-
-
-# provider "github" {
-#   # Configuration options
-# }
-
-
-# provider "dns" {
-#   # Configuration options
-# }
-
-
-# provider "random" {
-#   # Configuration options
-# }
-
-
-# provider "tls" {
-#   # Configuration options
-# }
-
-
-# provider "hetznercloud" {
-#   # Configuration options
-# }
-
-# provider "google" {
-#   # Configuration options
-# }
-
-# provider "azurerm" {
-#   # Configuration options
-# }
-# provider "aws" {
-#   # Configuration options
-# }
-# provider "kubernetes" {
-#   # Configuration options
-# }
 provider "time" {
   # Configuration options
 }
