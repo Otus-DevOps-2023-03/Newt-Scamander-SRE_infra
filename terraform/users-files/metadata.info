@@ -1,0 +1,11 @@
+#cloud-config
+users:
+  - name: localuser
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+#example
+      - ssh-rsa AAAAB3Nza......OjbSMRX localuser@example.com
+#example
+      - ssh-rsa AAAAB3Nza......Pu00jRN user@desktop
